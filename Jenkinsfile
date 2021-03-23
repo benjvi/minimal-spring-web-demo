@@ -3,6 +3,9 @@ pipeline {
 
     stages {
         stage('Sonar') {
+            agent {
+                     docker { image 'openjdk:11' }
+            }
             steps {
                 withSonarQubeEnv('sonarcloud') {
                     sh "./mvnw sonar:sonar -Dsonar.branch.name=${env.BRANCH_NAME}"
