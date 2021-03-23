@@ -2,9 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Sonar') {
             steps {
-                echo 'Building..'
+                withSonarQubeEnv('sonarcloud') {
+                    sh "./mvnw sonar:sonar -Dsonar.branch.name=${env.BRANCH_NAME}"
+                }
             }
         }
         stage('Test') {
