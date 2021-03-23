@@ -11,7 +11,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarcloud') {
-                    sh "mvn clean verify sonar:sonar -Dsonar.branch.name=${env.BRANCH_NAME} -D sonar.projectKey=benjvi_minimal-spring-web-demo" 
+                    sh "mvn verify sonar:sonar -Dsonar.branch.name=${env.BRANCH_NAME} -D sonar.projectKey=benjvi_minimal-spring-web-demo" 
                 }
             }
         }
