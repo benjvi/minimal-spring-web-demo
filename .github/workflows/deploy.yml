@@ -27,6 +27,8 @@ jobs:
         with:
           entrypoint: '.github/scripts/tbs-get-image-version.sh'
         uses: docker://benjvi/kp:latest
+        env:
+          KUBECONFIG_CONTENT: ${{ secrets.TBS_KUBECONFIG }}
 
       - name: Deploy manifests
         with:
