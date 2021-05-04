@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minimal-spring-demo
+  namespace: default
+  labels:
+    run: minimal-spring-demo
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    run: minimal-spring-demo
+  sessionAffinity: None
+  type: LoadBalancer
