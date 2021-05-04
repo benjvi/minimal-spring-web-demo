@@ -21,7 +21,7 @@ elif [ "$build_revision" != "$(git rev-parse HEAD)" ]; then
   exit 1
 fi
 
-export IMG_VERSION="$(kp image status "$TBS_IMAGE_NAME" | grep "LatestImage" | awk '{print $2}')"
-echo "Latest image version: $IMG_VERSION"
+export CURRENT_IMG_TAG="$(kp image status "$TBS_IMAGE_NAME" | grep "LatestImage" | awk '{print $2}')"
+echo "Latest image version: $CURRENT_IMG_TAG"
 
 rm "$kc_tmp"
