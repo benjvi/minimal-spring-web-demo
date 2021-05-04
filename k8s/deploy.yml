@@ -18,7 +18,7 @@ spec:
         app: minimal-spring-demo
     spec:
       containers:
-      - image: index.docker.io/benjvi/minimal-spring-demo:b12.20210326.115254
+      - image: index.docker.io/benjvi/minimal-spring-web-demo
         name: minimal-spring-demo
         env:
         - name: PORT
