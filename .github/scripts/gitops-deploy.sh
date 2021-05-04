@@ -3,7 +3,7 @@ set -euo pipefail
 echo 'Deploying....'
 
 export KEYFILE="$(mktemp)"
-echo "$RPI_GIT_DEPLOY_KEY" > "$KEYFILE"
+echo "$APPS_GITOPS_GIT_DEPLOY_KEY" > "$KEYFILE"
 cd /
 GIT_SSH_COMMAND='ssh -i "$KEYFILE" -o IdentitiesOnly=yes -o StrictHostKeyChecking=no' git clone git@github.com:benjvi/apps-gitops.git
 cd -
