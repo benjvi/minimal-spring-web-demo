@@ -12,7 +12,7 @@ IMG_VERSION="$(git rev-parse --short=8 HEAD)"
 # TODO: add kshard in here
 echo "$IMG_VERSION"
 
-cd _deploy/k8s
+cd k8s
 # need to set the reference to the published image in the manifest, note this is specific to:
 # (1) our use of kustomize manifests in this repo (2) use of TBS
 kustomize edit set image "index.docker.io/benjvi/minimal-spring-web-demo=index.docker.io/benjvi/minimal-spring-web-demo@${IMG_VERSION}"
