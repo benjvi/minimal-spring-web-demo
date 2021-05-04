@@ -8,7 +8,7 @@ export KUBECONFIG="$kc_tmp"
 
 export TBS_IMAGE_NAME="minimal-spring-web-demo"
 # avoid consistency issues with a small sleep
-kp build logs angular-demo; sleep 1
+kp build logs "$TBS_IMAGE_NAME"; sleep 1
 
 # check if we attached to the correct build and it completed successfully, if not then fail
 if [ "$( kp build status "$TBS_IMAGE_NAME" | grep Status | awk '{print $2}')" != "SUCCESS" ]; then
