@@ -7,7 +7,7 @@ echo "$KUBECONFIG_CONTENT" > "$kc_tmp"
 export KUBECONFIG="$kc_tmp"
 
 # avoid consistency issues with a small sleep
-kp build logs angular-demo; sleep 1
+kp build logs angular-demo; sleep 5
 
 # check if we attached to the correct build and it completed successfully, if not then fail
 if [ "$( kp build status angular-demo | grep Status | awk '{print $2}')" != "SUCCESS" ]; then
