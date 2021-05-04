@@ -23,5 +23,6 @@ fi
 
 export CURRENT_IMG_TAG="$(kp image status "$TBS_IMAGE_NAME" | grep "LatestImage" | awk '{print $2}')"
 echo "Latest image version: $CURRENT_IMG_TAG"
-
 rm "$kc_tmp"
+
+echo "$CURRENT_IMG_TAG" > current-img-tag

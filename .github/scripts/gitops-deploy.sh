@@ -10,6 +10,7 @@ cd -
 
 APP_NAME="spring-app"
 IMAGE_NAME="minimal-spring-web-demo"
+CURRENT_IMG_TAG="$(cat current-image-tag)"
 echo "current image tag: $CURRENT_IMG_TAG"
 
 cd k8s
