@@ -13,6 +13,6 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    run: minimal-spring-demo
+    app: minimal-spring-demo
   sessionAffinity: None
   type: LoadBalancer
