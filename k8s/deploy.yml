@@ -20,9 +20,6 @@ spec:
       containers:
       - image: index.docker.io/benjvi/minimal-spring-web-demo
         name: minimal-spring-demo
-        env:
-        - name: PORT
-          value: "8080"
         securityContext:
         #  readOnlyRootFilesystem: true
           runAsNonRoot: true
