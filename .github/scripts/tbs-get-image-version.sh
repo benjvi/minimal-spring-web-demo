@@ -11,11 +11,13 @@ export TBS_IMAGE_NAME="minimal-spring-web-demo"
 kp build logs "$TBS_IMAGE_NAME"; sleep 1
 
 # check if we attached to the correct build and it completed successfully, if not then fail
-if [ "$( kp build status "$TBS_IMAGE_NAME" | grep Status | awk '{print $2}')" != "SUCCESS" ]; then
-  echo "TBS image build failed"
+build_status="$( kp build status "$TBS_IMAGE_NAME" | grep Status | awk '{print $2}')"
+build_revision="$( kp build status "$TBS_IMAGE_NAME" | grep Revision | awk '{print $2}')"
+if [ "$build_status" != "SUCCESS" ]; then
+  echo "TBS image build failed with status: \"$build_status\""
   exit 1
-elif [ "$( kp build status "$TBS_IMAGE_NAME" | grep Revision | awk '{print $2}')" != "$(git rev-parse HEAD)" ]; then
-  echo "TBS image build is at a different version: $( kp build status "$TBS_IMAGE_NAME" | grep Revision | awk '{print $2}'), current version is $(git rev-parse HEAD)"
+elif [ "$build_revision" != "$(git rev-parse HEAD)" ]; then
+  echo "TBS image build is at a different git revision: $build_revision, current version is $(git rev-parse HEAD)"
   exit 1
 fi
 
