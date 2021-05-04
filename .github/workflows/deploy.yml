@@ -26,7 +26,7 @@ jobs:
       - name: Get published docker image
         with:
           entrypoint: '.github/scripts/tbs-get-image-version.sh'
-        uses: docker://benjvi/prify:latest
+        uses: docker://benjvi/kp:latest
 
       - name: Deploy manifests
         with:

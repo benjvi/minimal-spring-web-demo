@@ -5,7 +5,7 @@ echo 'Deploying....'
 export KEYFILE="$(mktemp)"
 echo "$RPI_GIT_DEPLOY_KEY" > "$KEYFILE"
 cd /
-GIT_SSH_COMMAND='ssh -i "$KEYFILE" -o IdentitiesOnly=yes -o StrictHostKeyChecking=no' git clone https://github.com:benjvi/apps-gitops
+GIT_SSH_COMMAND='ssh -i "$KEYFILE" -o IdentitiesOnly=yes -o StrictHostKeyChecking=no' git clone git@github.com:benjvi/apps-gitops.git
 cd -
 
 IMG_VERSION="$(git rev-parse --short=8 HEAD)"
