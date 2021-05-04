@@ -12,9 +12,7 @@ jobs:
   pipeline:
     environment: default
     env:
-      GH_REPO_PAT_TOKEN: ${{ secrets.GH_REPO_PAT_TOKEN }}
-      DOCKERHUB_LOGIN_TOKEN: ${{ secrets.DOCKERHUB_LOGIN_TOKEN }}
-      RPI_GIT_DEPLOY_KEY: ${{ secrets.RPI_GIT_DEPLOY_KEY }}
+      APPS_GITOPS_GIT_DEPLOY_KEY: ${{ secrets.APPS_GITOPS_GIT_DEPLOY_KEY }}
     runs-on:
     - ubuntu-latest
     steps:
@@ -24,11 +22,11 @@ jobs:
 
       - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_REPO_PAT_TOKEN }}
 
-      - name: Publish docker image
-        run: 'bash .github/scripts/publish-image.sh'
+      - name: Get published docker image
+        with:
+          entrypoint: '.github/scripts/tbs-get-image-version.sh'
+        uses: docker://benjvi/prify:latest
 
       - name: Deploy manifests
         with:
