@@ -8,7 +8,7 @@ export KUBECONFIG="$kc_tmp"
 
 export TBS_IMAGE_NAME="minimal-spring-web-demo"
 # avoid consistency issues with a small sleep
-kp build logs "$TBS_IMAGE_NAME"; sleep 10
+sleep 10; kp build logs "$TBS_IMAGE_NAME"; sleep 10
 
 # check if we attached to the correct build and it completed successfully, if not then fail
 build_status="$( kp build status "$TBS_IMAGE_NAME" | grep Status | awk '{print $2}')"
