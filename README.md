@@ -4,7 +4,9 @@ This is a minimal Spring Boot service, used to demonstrate Continuous Integratio
 
 # Post-integration workflow
 
-This workflow is called, "Deploy via GitOps". You can view the config [here](https://github.com/benjvi/minimal-spring-web-demo/blob/main/.github/workflows/deploy.yml) or the workflow runs [here](https://github.com/benjvi/minimal-spring-web-demo/actions/workflows/deploy.yml). Several checks are done on the code whilst, in parallel, Tanzu Build Service (specifically, its 'kpack controller') triggers the build and publishing of a container image. Once done, the [kubernetes manifests](https://github.com/benjvi/minimal-spring-web-demo/tree/main/k8s) are updated with the image (using kustomize), and are checked into the [GitOps repo nonprod folder](https://github.com/benjvi/apps-gitops/tree/main/nonprod-cluster/spring-app). The following diagram describes this flow:
+This workflow is called, "Deploy via GitOps". It runs after code has been merged, or "integrated", onto the main branch. You can view the config [here](https://github.com/benjvi/minimal-spring-web-demo/blob/main/.github/workflows/deploy.yml) or the workflow runs [here](https://github.com/benjvi/minimal-spring-web-demo/actions/workflows/deploy.yml). 
+
+According to trunk-based development, code on the main branch is intended to be ready for production. However, we still need to validate the integrated code. Several checks are done on the code whilst, in parallel, Tanzu Build Service (specifically, its 'kpack controller') triggers the build and publishing of a container image. Once done, the [kubernetes manifests](https://github.com/benjvi/minimal-spring-web-demo/tree/main/k8s) are updated with the image (using kustomize), and are checked into the [GitOps repo nonprod folder](https://github.com/benjvi/apps-gitops/tree/main/nonprod-cluster/spring-app). The following diagram describes this flow:
 
 ![post integration flow](https://github.com/benjvi/minimal-spring-web-demo/raw/main/tbs-post-integration-flow.png)
 
