@@ -26,7 +26,7 @@ cd -
 # add empty kustomize config to nonprod gitops fodler
 # reasons to use kustomize in the gitops repo is not yet clear in this simple example, but will be useful when envs have different configs
 cd "/apps-gitops/nonprod-cluster/${APP_NAME}"
-kustomize create || true; kustomize edit add resource ci-package.yml
+kustomize create || true; kustomize edit add resource *.yml
 cd -
 
 # need some details set in env for prify to work correctly
