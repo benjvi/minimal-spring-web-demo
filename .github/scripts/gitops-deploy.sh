@@ -17,13 +17,14 @@ cd k8s
 # need to set the reference to the published image in the manifest, note this is specific to:
 # (1) our use of kustomize manifests in this repo (2) use of TBS
 kustomize edit set image "index.docker.io/benjvi/$IMAGE_NAME=${CURRENT_IMG_TAG}"
+
 # rendering of the manifests to deal with *app specific customizations*, note this is specific to our choice of packaging
-# TODO: add kshard in here
-kustomize build . > "/apps-gitops/nonprod-cluster/${APP_NAME}/ci-package.yml"
+# use yshard to group resources into files, by resource *kind*
+kustomize build . | yshard -g ".kind" -o "/apps-gitops/nonprod-cluster/${APP_NAME}"
 cd -
 
 # add empty kustomize config to nonprod gitops fodler
-# reasons to use kustomize in the gitops repo is not yet clear in this simple example, but will be useful when envs have different convifgs
+# reasons to use kustomize in the gitops repo is not yet clear in this simple example, but will be useful when envs have different configs
 cd "/apps-gitops/nonprod-cluster/${APP_NAME}"
 kustomize create || true; kustomize edit add resource ci-package.yml
 cd -
