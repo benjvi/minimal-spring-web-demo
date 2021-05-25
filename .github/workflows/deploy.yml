@@ -28,7 +28,7 @@ jobs:
       - name: Run tests
         uses: docker://maven:latest
         with:
-          args: 'test'
+          args: ["mvn","test"]
 
       - name: Get published docker image
         with:
