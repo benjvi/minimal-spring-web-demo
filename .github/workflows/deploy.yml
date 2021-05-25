@@ -25,6 +25,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Run tests
+        users: docker://maven:latest
+        run: 'test'
+
       - name: Get published docker image
         with:
           entrypoint: '.github/scripts/tbs-get-image-version.sh'
