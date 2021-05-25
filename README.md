@@ -14,9 +14,9 @@ You can get more details about how the Continuous Deployment part of this flow w
 
 # Kpack Image
 
-The `kpack-image.yml` defines how the Docker images are produced for this repo, based on Tanzu Build Service constructs. It is configured to match your environment:
+The `kpack-image.yml` defines how the Docker images are produced for this repo, based on Tanzu Build Service constructs. It is configured to match your context:
   - `spec.source.git` to match your Git repo
   - `spec.builder` to match a builder available in your Tanzu Build Service installation. In this repo, we are using a custom [builder](https://github.com/pivotal/kpack/blob/main/docs/builders.md)
-  - `spec.tag` to match a docker image tag than Tanzu Build Service can push
+  - `spec.tag` to match a docker image tag that Tanzu Build Service can push
 
 This Kpack `Image` must be installed in your Tanzu Build Service installation with `kubectl apply -f kpack-image.yml` for Tanzu Build Serivce to start building Docker images based on the code found in the repo.
