@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run tests
-        users: docker://maven:latest
+        uses: docker://maven:latest
         run: 'test'
 
       - name: Get published docker image
